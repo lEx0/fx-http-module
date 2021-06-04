@@ -57,11 +57,15 @@ var Module = fx.Options(
 					}
 				}()
 
+				logger.Sugar().Info("http server started")
+
 				return nil
 			},
 			// при остановке приложения, останавливаем http сервер
 			// с ожиданием закрытия всех соединений
 			OnStop: func(ctx context.Context) error {
+				logger.Sugar().Info("stopping http server")
+
 				return server.Shutdown(ctx)
 			},
 		})
